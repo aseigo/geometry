@@ -4,12 +4,11 @@ defmodule EncodeWkbNdrBinBench do
   import Support
 
   @endian :ndr
+  require Support
+  import Support
 
-  formatter Benchee.Formatters.Markdown,
-    file: file(__MODULE__),
-    title: "Encode WKB (NDR/bin)"
-
-  inputs data(:elixir)
+  formatters(__MODULE__, "Encode WKB (NDR/bin)")
+  inputs(data(:elixir))
 
   job geo({_geometry, geos}) do
     Enum.map(geos, fn geo -> geo |> Geo.WKB.encode_to_iodata(@endian) |> IO.iodata_to_binary() end)

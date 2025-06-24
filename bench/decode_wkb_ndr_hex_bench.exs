@@ -1,11 +1,10 @@
 defmodule DecodeWkbNdrHexBench do
   use BencheeDsl.Benchmark
 
+  require Support
   import Support
 
-  formatter Benchee.Formatters.Markdown,
-    file: file(__MODULE__),
-    title: "Decode WKB (NDR/hex)"
+  formatters(__MODULE__, "Encode WKB (NDR/hex)")
 
   inputs data(:wkb, :ndr, :hex)
 

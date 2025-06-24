@@ -1,13 +1,12 @@
 defmodule DecodeGeoJsonBench do
   use BencheeDsl.Benchmark
 
+  require Support
   import Support
 
-  formatter Benchee.Formatters.Markdown,
-    file: file(__MODULE__),
-    title: "Decode WKB (NDR/hex)"
+  formatters(__MODULE__, "Decode WKB (NDR/hex)")
 
-  inputs data(:geo_json)
+  inputs(data(:geo_json))
 
   job geo(input) do
     Geo.JSON.decode!(input)

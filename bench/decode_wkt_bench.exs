@@ -3,11 +3,12 @@ defmodule DecodeWktBench do
 
   import Support
 
-  formatter Benchee.Formatters.Markdown,
-    file: file(__MODULE__),
-    title: "Decode WKT"
+  require Support
+  import Support
 
-  inputs data(:wkt)
+  formatters(__MODULE__, "Decode WKT")
+
+  inputs(data(:wkt))
 
   job geo(wkts) do
     Enum.map(wkts, fn wkt -> Geo.WKT.decode!(wkt) end)

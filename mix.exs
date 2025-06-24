@@ -136,6 +136,7 @@ defmodule Geometry.MixProject do
       {:beam_file, "~>0.4", only: :dev},
       {:benchee_dsl, "~> 0.1", only: :dev},
       {:benchee_markdown, "~> 0.2", only: :dev},
+      {:benchee_html, "~> 1.0", only: :dev},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
       {:ex_doc, "~> 0.28", only: :dev, runtime: false},

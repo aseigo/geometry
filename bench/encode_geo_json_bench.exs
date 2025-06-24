@@ -1,13 +1,12 @@
 defmodule EncodeGeoJsonBench do
   use BencheeDsl.Benchmark
 
+  require Support
   import Support
 
-  formatter Benchee.Formatters.Markdown,
-    file: file(__MODULE__),
-    title: "Encode GeoJson"
+  formatters(__MODULE__, "Encode GeoJson")
 
-  inputs data(:elixir)
+  inputs(data(:elixir))
 
   job geometry({geometries, _geo}) do
     Enum.map(geometries, fn geometry -> Geometry.to_geo_json(geometry) end)

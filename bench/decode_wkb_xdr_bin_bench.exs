@@ -1,13 +1,12 @@
 defmodule DecodeWkbXdrBinBench do
   use BencheeDsl.Benchmark
 
+  require Support
   import Support
 
-  formatter Benchee.Formatters.Markdown,
-    file: file(__MODULE__),
-    title: "Decode WKB (XDR/bin)"
+  formatters(__MODULE__, "Decode WKB (XDR/bin)")
 
-  inputs data(:wkb, :xdr, :bin)
+  inputs(data(:wkb, :xdr, :bin))
 
   job geo(wkbs) do
     Enum.map(wkbs, fn wkb -> Geo.WKB.decode!(wkb) end)

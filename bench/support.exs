@@ -1,11 +1,25 @@
 defmodule Support do
-  def file(module) do
-    Path.join("bench/reports", Macro.underscore(module) <> ".md")
+  def file(module, suffix) do
+    Path.join("bench/reports", [Macro.underscore(module), ".", suffix])
+  end
+
+  defmacro formatters(module, title) do
+    quote do
+      formatter(Benchee.Formatters.Markdown,
+        file: Support.file(unquote(module), "md"),
+        title: unquote(title)
+      )
+
+      formatter(Benchee.Formatters.HTML,
+        file: Support.file(unquote(module), "html"),
+        title: unquote(title)
+      )
+    end
   end
 
   @sm 100
   @lg 1_000
-  @xl 1_000
+  @xl 10_000
 
   wkt = fn geometry ->
     case geometry do

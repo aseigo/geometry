@@ -1,13 +1,12 @@
 defmodule EncodeWktBench do
   use BencheeDsl.Benchmark
 
+  require Support
   import Support
 
-  formatter Benchee.Formatters.Markdown,
-    file: file(__MODULE__),
-    title: "Encode WKT"
+  formatters(__MODULE__, "Encode WKT")
 
-  inputs data(:elixir)
+  inputs(data(:elixir))
 
   job geo({_geometry, geos}) do
     Enum.map(geos, fn geo -> Geo.WKT.encode!(geo) end)
